@@ -17,9 +17,9 @@ npm install --save vue-pagination-simple
 <template>
 	<div>
 		<app-pagination
-			:current="currentPage" 		// default = 1
-			:total="totalPages"			// default = 0
-			:page-range="pageRange"		// default = 2
+			:current="currentPage"
+			:total="totalPages"
+			:page-range="pageRange"
 		></app-pagination>
 	</div>
 </template>
