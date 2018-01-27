@@ -1,0 +1,25 @@
+{
+	"name": "vue-pagination-simple",
+	"version": "1.0.0",
+	"description": "simple vue pagination component",
+	"main": "Pagination.vue",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/goveo/vue-pagination-simple.git"
+	},
+	"keywords": [
+		"vue",
+		"pagination",
+		"paginate",
+		"page",
+		"ui",
+		"simple"
+	],
+	"author": "yuriybrusentsov@gmail.com",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/goveo/vue-pagination-simple/issues"
+	},
+	"homepage": "https://github.com/goveo/vue-pagination-simple#readme"
+}
