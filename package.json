@@ -1,6 +1,6 @@
 {
 	"name": "vue-pagination-simple",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "simple vue pagination component",
 	"main": "Pagination.vue",
 	"scripts": {},
