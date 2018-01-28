@@ -16,10 +16,12 @@ npm install --save vue-pagination-simple
 ```vue
 <template>
 	<div>
-		<app-pagination
-			:current="currentPage"
-			:total="totalPages"
-			:page-range="pageRange"
+		<app-pagination class="center"
+			:current="currentPage" 
+			:total="totalPages" 
+			:per-page="perPage"
+			:active-color="'#007DFF'"
+			:active-font-color="'black'"
 			@page-changed="changePage"
 		></app-pagination>
 	</div>
@@ -43,4 +45,24 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+
+// you can add style of pagination hover and border by class .pagination
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.pagination a {
+	border: 1px solid #ddd;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+</style>
+
 ```
