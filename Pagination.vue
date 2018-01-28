@@ -1,21 +1,21 @@
 <template id="pagination-template">
 	<div class="pagination">
 		<div class="center">
-			<a href="#" v-if="hasPrev()" @click.prevent="changePage(prevPage)">Prev</a>
-			<span v-if="hasFirst()"><a href="#" @click.prevent="changePage(1)">1</a></span>
-			<a v-if="hasFirstDots()">...</a>
+			<a :style="notActiveStyle" href="#" v-if="hasPrev()" @click.prevent="changePage(prevPage)">Prev</a>
+			<span v-if="hasFirst()"><a href="#" :style="notActiveStyle"  @click.prevent="changePage(1)">1</a></span>
+			<a :style="notActiveStyle" v-if="hasFirstDots()">...</a>
 			<span v-for="page in pages" :key="page">
-				<a v-if="page == current" class="active" href="#" @click.prevent="changePage(page)">
+				<a v-if="page == current" class="active" :style="activeStyle" href="#" @click.prevent="changePage(page)">
 					{{ page }}
 				</a>
-				<a v-else href="#" @click.prevent="changePage(page)">
+				<a :style="notActiveStyle" v-else href="#" @click.prevent="changePage(page)">
 					{{ page }}
 				</a>
 			</span>
-			<a v-if="hasLastDots()">...</a>
-			<span v-if="hasLast()"><a href="#" @click.prevent="changePage(total)">{{ total }}</a></span>
+			<a :style="notActiveStyle" v-if="hasLastDots()">...</a>
+			<span v-if="hasLast()"><a href="#" :style="notActiveStyle"  @click.prevent="changePage(total)">{{ total }}</a></span>
 
-			<a href="#" v-if="hasNext()" @click.prevent="changePage(nextPage)">Next</a>
+			<a :style="notActiveStyle" href="#" v-if="hasNext()" @click.prevent="changePage(nextPage)">Next</a>
 		</div>
 	</div>
 </template>
@@ -34,25 +34,50 @@ export default {
 		pageRange: {
 			type: Number,
 			default: 2
+		},
+		color: {
+			type: String,
+			default: "white"
+		},
+		fontColor: {
+			type: String,
+			default: "black"
+		},
+		activeFontColor: {
+			type: String,
+			default: "white"
+		},
+		activeColor: {
+			type: String,
+			default: "#007DFF"
+		},
+		borderColor: {
+			type: String,
+			default: "#ddd"
 		}
 	},
 	computed: {
 		pages: function () {
-			var pages = [];
+			let pages = [];
 
-			for (var i = this.rangeStart; i <= this.rangeEnd; i++) {
+			for (let i = this.rangeStart; i <= this.rangeEnd; i++) {
 				pages.push(i);
 			}
 
 			return pages;
 		},
 		rangeStart: function () {
-			var start = this.current - this.pageRange;
+			let start = this.current - this.pageRange;
 
-			return (start > 0) ? start : 1;
+			if (start > 0) {
+				return start;
+			} else {
+				return 1;
+			}
+			// return (start > 0) ? start : 1;
 		},
 		rangeEnd: function () {
-			var end = this.current + this.pageRange;
+			let end = this.current + this.pageRange;
 
 			return (end < this.total) ? end : this.total;
 		},
@@ -61,6 +86,20 @@ export default {
 		},
 		prevPage: function () {
 			return this.current - 1;
+		},
+		activeStyle: function() {
+			return {
+				color: this.activeFontColor,
+				backgroundColor: this.activeColor,
+				border: `1px solid ${this.borderColor}`,
+			}
+		},
+		notActiveStyle: function() {
+			return {
+				color: this.fontColor,
+				backgroundColor: this.color,
+				border: `1px solid ${this.borderColor}`
+			}
 		}
 	},
 	methods: {
@@ -78,8 +117,6 @@ export default {
 			}
 		},
 		hasLastDots: function () {
-			console.log('this.rangeEnd : ', this.rangeEnd)
-			console.log('this.total - 1 : ', this.total - 1)
 			if (this.rangeEnd >= this.total - 1) {
 				return false; 
 			} else {
@@ -94,44 +131,33 @@ export default {
 		},
 		changePage: function (page) {
 			this.$emit('page-changed', page);
-		},
-		created: function() {
-			console.log('pagination created');
 		}
 	}
 }
 </script>
 
-<style>
+<style scoped>
 
 .pagination {
     display: inline-block;
 	margin-top: 20px;
 }
 
-.pagination a {
+a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-    border: 1px solid #ddd;
 }
 
-.pagination a.active {
-    background-color: #007DFF;
-    color: white;
-    border: 1px solid #007DFF;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
+a:hover:not(.active) {
+	background-color: greenyellow;
 }
 
 .center {
   display: flex;
   justify-content: center;
-  /* align horizontal */
 }
 
 </style>

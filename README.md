@@ -20,6 +20,7 @@ npm install --save vue-pagination-simple
 			:current="currentPage"
 			:total="totalPages"
 			:page-range="pageRange"
+			@page-changed="changePage"
 		></app-pagination>
 	</div>
 </template>
@@ -32,6 +33,12 @@ export default {
 			currentPage: 6,
 			totalPages: 10,
 			pageRange: 3
+		}
+	},
+	methods: {
+		changePage(page) {
+			console.log(`page changed on ${page}`);
+			this.currentPage = page;
 		}
 	}
 }
