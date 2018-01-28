@@ -13,17 +13,17 @@ npm install --save vue-pagination-simple
 ## Usage
 ---------------
 
-```vue
+```html
 <template>
 	<div>
 		<app-pagination class="center"
-			:current="currentPage" 
-			:total="totalPages" 
-			:per-page="perPage"
-			:active-color="'#007DFF'"
-			:active-font-color="'black'"
-			@page-changed="changePage"
-		></app-pagination>
+    		:current="currentPage" 
+    		:total="totalPages" 
+    		:page-range="pageRange"
+    		:active-font-color="'black'"
+    		:active-color="'#007DFF'"
+    		@page-changed="changePage"
+    	></app-pagination>
 	</div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
 		return {
 			currentPage: 6,
 			totalPages: 10,
-			pageRange: 3
+			pageRange: 2
 		}
 	},
 	methods: {
@@ -66,3 +66,7 @@ export default {
 </style>
 
 ```
+## Example
+---------------
+
+<img src="https://i.imgur.com/y9LgCDm.jpg" alt="pagination example"></img>
